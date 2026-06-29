@@ -17,6 +17,7 @@ app.get("/notes", (req, res) => {
   })
 })
 
+
 app.get("/notes/:noteId", (req, res) => {
   const { noteId } = req.params
   req.log.info(`Note by id: ${noteId}`)
