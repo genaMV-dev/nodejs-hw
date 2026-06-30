@@ -40,6 +40,6 @@ app.use((req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on: ${process.env.PORT}`);
+app.listen(process.env.PORT|| 3000, () => {
+  console.log(`Server is running on: ${process.env.PORT||3000}`);
 });
