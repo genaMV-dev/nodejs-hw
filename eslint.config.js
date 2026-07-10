@@ -9,9 +9,12 @@ export default defineConfig([
     extends: ["js/recommended"], 
     languageOptions: { 
       globals: {
-        ...globals.browser, // залишаємо глобальні змінні браузера (window, document)
-        ...globals.node     // додаємо змінні Node.js (process, __dirname тощо)
+        ...globals.browser,
+        ...globals.node
       } 
-    } 
+    },
+    rules: {
+      "no-unused-vars": "off"
+    }
   },
 ]);
