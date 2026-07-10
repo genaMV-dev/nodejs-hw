@@ -8,8 +8,7 @@ import { logger } from './middleware/logger.js';
 import { connectMongoDB } from './db/connectMongoDB.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { errorHandler } from './middleware/errorHandler.js';
-import router from "./routes/notesRoutes.js"
-
+import router from './routes/notesRoutes.js';
 
 const app = express();
 
@@ -17,16 +16,10 @@ app.use(cors());
 app.use(express.json());
 app.use(logger);
 
-app.use(router)
-
-app.get('/test-error', () => {
-  throw new Error('Simulated server error');
-});
-
-app.use(errorHandler);
+app.use(router);
 
 app.use(notFoundHandler);
-
+app.use(errorHandler);
 await connectMongoDB();
 
 app.listen(process.env.PORT || 3000, () => {
