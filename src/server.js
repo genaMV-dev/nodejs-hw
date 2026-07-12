@@ -9,6 +9,7 @@ import { connectMongoDB } from './db/connectMongoDB.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import router from './routes/notesRoutes.js';
+import { errors } from 'celebrate';
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.use(logger);
 app.use(router);
 
 app.use(notFoundHandler);
+
+app.use(errors());
 app.use(errorHandler);
 await connectMongoDB();
 
