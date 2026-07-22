@@ -18,13 +18,13 @@ export const authenticate = async (req, res, next) => {
     throw createHttpError(401, 'No session');
   }
 
-  const isAccessTokenExpired = await session.accessTokenValidUntil < new Date();
+  const isAccessTokenExpired = session.accessTokenValidUntil < new Date();
 
   if (isAccessTokenExpired) {
     throw createHttpError(401, 'Token expired');
   }
 
-  const user = User.findOne({ _id: session.userId });
+  const user = await User.findOne({ _id: session.userId });
   if (!user) {
     throw createHttpError(401, 'No user');
   }
