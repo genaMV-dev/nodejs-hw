@@ -10,7 +10,7 @@ export const registerUser = async (req, res) => {
   });
 
   if (exitUser) {
-    throw createHttpError(401, 'Email is already in use');
+    throw createHttpError(400, 'Email is already in use');
   }
 
   const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -70,7 +70,7 @@ export const refreshUserSession = async (req, res) => {
     throw createHttpError(401, 'Missing tokens');
   }
 
-  const session = Session.findOne({
+  const session = await Session.findOne({
     _id: sessionId,
     refreshToken,
   });
@@ -82,7 +82,7 @@ export const refreshUserSession = async (req, res) => {
   const isRefreshTokenExpired = session.refreshTokenValidUntil < new Date();
 
   if (isRefreshTokenExpired) {
-    session.deleteOne();
+    await session.deleteOne();
 
     res.clearCookie('accessToken');
     res.clearCookie('refreshToken');

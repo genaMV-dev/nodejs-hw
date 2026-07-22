@@ -3,12 +3,14 @@ import { Session } from '../models/session.js';
 import crypto from 'node:crypto';
 
 export const createSession = async (userId) => {
+  const now = Date.now();
+
   const session = await Session.create({
     userId,
     accessToken: crypto.randomUUID(),
     refreshToken: crypto.randomUUID(),
-    accessTokenValidUntil: FIFTEEN_MINUTES,
-    refreshTokenValidUntil: ONE_DAY,
+    accessTokenValidUntil: new Date(now + FIFTEEN_MINUTES),
+    refreshTokenValidUntil: new Date(now + ONE_DAY),
   });
 
   return session;
