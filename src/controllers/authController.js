@@ -8,7 +8,6 @@ import jwt from 'jsonwebtoken';
 import path from 'node:path';
 import fs from 'node:fs/promises';
 import handlebars from 'handlebars';
-import { sendEmail } from '../../utils/sendMail.js';
 
 export const registerUser = async (req, res) => {
   const exitUser = await User.findOne({
