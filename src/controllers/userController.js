@@ -1,4 +1,4 @@
-import { saveFileToCloudinary } from '../../utils/saveFileToCloudinary.js';
+import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
 import { User } from '../models/user.js';
 import createHttpError from 'http-errors';
 

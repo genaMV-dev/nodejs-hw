@@ -3,6 +3,7 @@ import createHttpError from 'http-errors';
 import bcrypt from 'bcrypt';
 import { createSession, setSessionCookies } from '../services/auth.js';
 import { Session } from '../models/session.js';
+import { sendEmail } from '../utils/sendMail.js';
 import jwt from 'jsonwebtoken';
 import path from 'node:path';
 import fs from 'node:fs/promises';
