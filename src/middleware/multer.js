@@ -1,0 +1,16 @@
+import  multer  from 'multer';
+
+export const uploadAvatar = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 2 * 1024 * 1024,
+  },
+  fileFilter(req, file, callback) {
+    if (!file.mimetype || !file.mimetype.startsWith('image/')) {
+      callback(new Error('Bad file type'));
+      return;
+    }
+
+    callback(null, true);
+  },
+});

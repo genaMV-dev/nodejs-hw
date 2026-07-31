@@ -17,6 +17,10 @@ const userSchema = new Schema(
       required: true,
       minlength: [8, 'Пароль користувача повинен містити не менше 8 символів'],
     },
+    avatar: {
+      type: String,
+      default: 'https://ac.goit.global/fullstack/react/default-avatar.jpg',
+    },
   },
   { timestamps: true }
 );
